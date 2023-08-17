@@ -16,54 +16,54 @@
                         Дом
                     </a>
                 </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{route('home')}}">--}}
+{{--                        <svg class="bi">--}}
+{{--                            <use xlink:href="#house-fill"/>--}}
+{{--                        </svg>--}}
+{{--                        Управляющая компания--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{route('home')}}">
-                        <svg class="bi">
-                            <use xlink:href="#house-fill"/>
-                        </svg>
-                        Управляющая компания
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        <svg class="bi">
-                            <use xlink:href="#people"/>
-                        </svg>
-                        Личный кабинет жильца
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2" href="{{route('profile')}}">
                         <svg class="bi">
                             <use xlink:href="#people"/>
                         </svg>
-                        Личный кабинет УК
+                        Профиль
                     </a>
                 </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link d-flex align-items-center gap-2" href="#">--}}
+{{--                        <svg class="bi">--}}
+{{--                            <use xlink:href="#people"/>--}}
+{{--                        </svg>--}}
+{{--                        Личный кабинет УК--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2" href="{{route('chat')}}">
                         <svg class="bi">
                             <use xlink:href="#people"/>
                         </svg>
                         Чат дома
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        <svg class="bi">
-                            <use xlink:href="#people"/>
-                        </svg>
-                        Чаты домов
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        <svg class="bi">
-                            <use xlink:href="#cart"/>
-                        </svg>
-                        Купить лицензию
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link d-flex align-items-center gap-2" href="#">--}}
+{{--                        <svg class="bi">--}}
+{{--                            <use xlink:href="#people"/>--}}
+{{--                        </svg>--}}
+{{--                        Чаты домов--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link d-flex align-items-center gap-2" href="#">--}}
+{{--                        <svg class="bi">--}}
+{{--                            <use xlink:href="#cart"/>--}}
+{{--                        </svg>--}}
+{{--                        Купить лицензию--}}
+{{--                    </a>--}}
+{{--                </li>--}}
             </ul>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
@@ -112,14 +112,14 @@
             <hr class="my-3">
 
             <ul class="nav flex-column mb-auto">
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        <svg class="bi">
-                            <use xlink:href="#gear-wide-connected"/>
-                        </svg>
-                        Settings
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link d-flex align-items-center gap-2" href="#">--}}
+{{--                        <svg class="bi">--}}
+{{--                            <use xlink:href="#gear-wide-connected"/>--}}
+{{--                        </svg>--}}
+{{--                        Settings--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
 
                     <a class="nav-link d-flex align-items-center gap-2" href="{{ route('logout') }}"

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <x-page-structure.head></x-page-structure.head>
-<body>
+<body class="m-0 w-100vh">
 
 <div id="app">
     <x-svg.symbol_bootstrap></x-svg.symbol_bootstrap>
@@ -19,10 +19,12 @@
 
                 <x-page-structure.sidebar></x-page-structure.sidebar>
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4   vh-100">
                     @yield('content')
                 </main>
+
             @endguest
+
         </div>
     </div>
 </div>
