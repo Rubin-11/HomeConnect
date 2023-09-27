@@ -6,35 +6,41 @@ use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Services\ChatService;
 
 class ChatController extends Controller
 {
     private $chats;
     private $users;
+    private $chatService;
 
-    public function __construct(Chat $chats, User $users)
+    public function __construct(Chat $chats, User $users, ChatService $chatService)
     {
         $this->chats = $chats;
         $this->users = $users;
+        $this->chatService = $chatService;
     }
 
-    public function getChat()
+    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-//        dd($this->chats->all());
-//        dd($this->users->find(1));
         return view('chats/chat', ['chats' => $this->chats->all(), 'users' => $this->users]);
     }
 
-    public function addChat(Request $request)
+    public function add(Request $request): \Illuminate\Http\RedirectResponse
     {
-//        dd(auth()->user()->firs_name);
-//        $this->chats::created([
-//            'message' => $request->input('message'),
-//            'user_id' => auth()->user()->id,
-//        ]);
         $this->chats->fill($request->all());
-        $this->chats->user_id = auth()->user()->id;
+        $this->chats->user_id = auth()->id();
         $this->chats->save();
+//        broadcast(new MessageSent($this->chats));
         return redirect()->route('chat');
     }
+
+    public function delete($messageId)
+    {
+        if ($this->chatService->deleteMessage($messageId)) {
+            return redirect()->back()->with('message', 'Сообщение успешно удалено');
+        }
+        return redirect()->back()->with('message', 'Чужое сообщение нельзя удалить!!!');
+    }
+
 }

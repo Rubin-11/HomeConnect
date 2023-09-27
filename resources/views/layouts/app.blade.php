@@ -27,6 +27,19 @@
 
         </div>
     </div>
+    @push('scripts')
+        <script>
+            alert(Echo.private(`chat`)
+                .listen('MessageSent', (e) => {
+                    console.log(e.messages);
+                }))
+            Echo.private(`chat`)
+                .listen('MessageSent', (e) => {
+                    console.log(e.messages);
+                });
+        </script>
+    @endpush
 </div>
+@stack('scripts')
 </body>
 </html>

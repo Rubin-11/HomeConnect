@@ -1,67 +1,56 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="container">
         <h1>Чат жильцов дома</h1>
-
         <div class="card">
             <div class="card-body">
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{session('message')}}
+                    </div>
+                @endif
                 @foreach ($chats as $chat)
-                    <div class="alert alert-primary">
-                        <div class=" toast-header">
+                    <div class="alert @if($chat->user_id === \Illuminate\Support\Facades\Auth::id()) alert-danger @else alert-light @endif">
+                        <div class="toast-header">
                             <strong
                                 class="me-auto">{{ $users->find($chat->user_id)->firs_name }} {{$users->find($chat->user_id)->last_name }}
                                 :</strong>
-                            <small class="text-body-secondary">11 mins ago</small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            <small class="text-body-secondary">{{$chat->created_at}}</small>
+
+                            <form action="{{ route('chat.delete', $chat->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-x-square" viewBox="0 0 16 16">
+                                        <path
+                                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                        <path
+                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </button>
+                            </form>
                         </div>
                         <div class="toast-body">
                             {{ $chat->message }}
                         </div>
                     </div>
                 @endforeach
-
             </div>
         </div>
-
         <form class="chat-form rounded-pill bg-dark bg-opacity-10" method="POST" action="{{route('chats.store')}}"
               data-emoji-form="">
             @csrf
             <div class="row align-items-center gx-0">
                 <div class="col-auto">
-                    <a href="#" class="btn btn-icon btn-link text-body rounded-circle dz-clickable" id="dz-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-paperclip">
-                            <path
-                                d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
-                        </svg>
-                    </a>
                 </div>
-
                 <div class="col">
                     <div class="input-group">
                         <textarea class="form-control px-0" name="message" placeholder="Введите сообщение..." rows="1"
                                   data-emoji-input="" data-autosize="true"
                                   style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 47px;"></textarea>
-
-                        <a href="#" class="input-group-text text-body pe-0" data-emoji-btn="">
-                                                <span class="icon icon-lg">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                         class="feather feather-smile"><circle cx="12" cy="12"
-                                                                                               r="10"></circle><path
-                                                            d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9"
-                                                                                                     x2="9.01"
-                                                                                                     y2="9"></line><line
-                                                            x1="15" y1="9" x2="15.01" y2="9"></line></svg>
-                                                </span>
-                        </a>
                     </div>
                 </div>
-
                 <div class="col-auto">
                     <button class="btn btn-icon btn-primary rounded-circle ms-5" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -75,6 +64,7 @@
                 </div>
             </div>
         </form>
+
     </div>
 
 @endsection
