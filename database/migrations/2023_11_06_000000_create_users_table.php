@@ -4,12 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
-        /**
-         * Пользователи
-         */
+        //  Пользователи
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('firs_name');
@@ -20,13 +19,18 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('password_confirmation');
-            $table->unsignedBigInteger('category_users_id');
+            $table->unsignedBigInteger('category_user_id');
             $table->unsignedBigInteger('flat_id');
+            $table->unsignedBigInteger('application_from_user_id');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('category_users_id')->references('id')->on('category_users');
+            $table->foreign('category_user_id')->references('id')->on('category_users');
             $table->foreign('flat_id')->references('id')->on('flats');
+        });
+
+        Schema::table('flats', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

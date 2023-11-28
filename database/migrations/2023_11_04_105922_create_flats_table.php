@@ -21,6 +21,8 @@ return new class extends Migration
 
             $table->foreign('meters_readings_id')->references('id')->on('meters_readings');
         });
+
+
     }
 
 
