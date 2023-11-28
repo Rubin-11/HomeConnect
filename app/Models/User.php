@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Mosquitto\Message;
 
 class User extends Authenticatable
 {
@@ -24,6 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'firs_name',
         'last_name',
+        'patronymic',
         'email',
         'password',
     ];
@@ -48,8 +48,21 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function messages(): HasMany
+    // Связь с типом пользователя.
+    public function categoryUser(): HasOne
     {
-        return $this->hasMany(Chat::class);
+        return $this->hasOne(CategoryUser::class);
+    }
+
+    // Связь с квартирами, один пользователь может иметь несколько квартир.
+    public function flat(): HasMany
+    {
+        return $this->hasMany(Flat::class);
+    }
+
+    // Связь с заявками от пользователя, один пользователь имеет много заявок. 
+    public function applicationFromUser(): HasMany
+    {
+        return $this->hasMany(ApplicationFromUser::class);
     }
 }

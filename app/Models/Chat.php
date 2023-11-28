@@ -4,10 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Events\Dispatcher;
 use App\Events\ChatEvent;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Chat extends Model
 {
@@ -22,17 +20,8 @@ class Chat extends Model
         'created' => ChatEvent::class,
     ];
 
-    public function user(): BelongsTo
+    public function user(): HasMany
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::created(function ($chat) {
-
-        });
+        return $this->hasMany(User::class);
     }
 }

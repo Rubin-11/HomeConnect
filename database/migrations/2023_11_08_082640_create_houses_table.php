@@ -22,6 +22,10 @@ return new class extends Migration
 
             $table->foreign('management_company_id')->references('id')->on('management_companies');
         });
+
+        Schema::table('management_companies', function (Blueprint $table) {
+            $table->foreign('house_id')->references('id')->on('houses');
+        });
     }
 
     public function down(): void

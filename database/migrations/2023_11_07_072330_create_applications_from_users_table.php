@@ -20,6 +20,10 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('application_from_user_id')->references('id')->on('applications_from_users')->cascadeOnDelete();
+        });
     }
 
     public function down(): void
