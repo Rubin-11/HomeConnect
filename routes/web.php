@@ -5,13 +5,19 @@ use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Livewire\Chat;
 use App\Livewire\Home;
+use App\Livewire\ManagementCompany;
+use App\Livewire\PersonalAccount;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // })->name('welcome');
 
 Route::get('/', Home::class);
+Route::get('/management-company', ManagementCompany::class)->name('management-company');
+Route::get('/chat', Chat::class)->name('chat');
+Route::get('/personal-account', PersonalAccount::class)->name('personal-account');
 
 // Auth::routes();
 

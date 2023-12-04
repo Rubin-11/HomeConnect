@@ -10,7 +10,11 @@
 </head>
 
 <body>
+
+    <livewire:header />
+
     {{ $slot }}
+
 </body>
 
 </html>
